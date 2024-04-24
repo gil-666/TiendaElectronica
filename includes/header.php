@@ -5,7 +5,7 @@ session_start();
 <html lang="zxx">
 
 <head>
-	<title>Startup a Corporate Category Bootstrap Responsive Website Template | Home :: W3layouts</title>
+	<title>Tienda Electronica</title>
 	<!-- Meta tag Keywords -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8" />
