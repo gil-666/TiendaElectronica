@@ -60,11 +60,12 @@ session_start();
 							<ul class="menu">
 								
 								<li><a href="index.php" class="active">Inicio</a></li>
-								<?php if(isset($_SESSION['idUsuario'])): ?>
 								<li><a href="articulos.php" class="active">Artículos</a></li>
+								<?php if(isset($_SESSION['idUsuario'])): ?>
+									<li><a href="nuevo.php" class="active">Agregar Artículos</a></li>
 								<?php else: ?>
 								<?php endif; ?>
-								<li><a href="nuevo.php" class="active">Agregar Artículos</a></li>
+								
 								<li><a href="contact.php" class="active">Contact Us</a></li>
 
 								<?php if(isset($_SESSION['idUsuario'])): ?>

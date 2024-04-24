@@ -1,6 +1,10 @@
 <?php
 require 'database.php';
 require 'includes/header.php';
+if(!isset($_SESSION['idUsuario'])) {
+    header("location: login.php");
+    exit(); // Make sure to exit after redirection
+}
 // Verificar si se enviaron datos del formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verificar si se seleccionó un archivo de imagen
