@@ -16,28 +16,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $semestre = $_POST['semestre'];
     $correo = $_POST['correo'];
     $password = $_POST['password'];
+    $confirm_password = $_POST['passwordconfirm'];
     $telefono = $_POST['telefono'];
     $direccion = $_POST['direccion'];
 
-    if (!empty($nombre) && !empty($tipo) && !empty($carrera) && !empty($semestre) && !empty($correo) && !empty($password) && !empty($telefono) && !empty($direccion)) {
-        // Prepare an SQL statement to insert data into the users table
-        $sql = "INSERT INTO users (nombre, tipo, carrera, semestre, correo, password, telefono, direccion) VALUES (:nombre, :tipo, :carrera, :semestre, :correo, :password, :telefono, :direccion)";
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':nombre', $nombre);
-        $stmt->bindParam(':tipo', $tipo);
-        $stmt->bindParam(':carrera', $carrera);
-        $stmt->bindParam(':semestre', $semestre);
-        $stmt->bindParam(':correo', $correo);
-        $hashed_password = password_hash($password, PASSWORD_BCRYPT);
-        $stmt->bindParam(':password', $hashed_password);
-        $stmt->bindParam(':telefono', $telefono);
-        $stmt->bindParam(':direccion', $direccion);
+    if (!empty($nombre) && !empty($tipo) && !empty($carrera) && !empty($semestre) && !empty($correo) && !empty($password) && !empty($confirm_password) && !empty($telefono) && !empty($direccion)) {
+        // Check if passwords match
+        if ($password === $confirm_password) {
+            // Prepare an SQL statement to insert data into the users table
+            $sql = "INSERT INTO usuario (nombre, tipo, carrera, semestre, correo, password, telefono, direccion) VALUES (:nombre, :tipo, :carrera, :semestre, :correo, :password, :telefono, :direccion)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':nombre', $nombre);
+            $stmt->bindParam(':tipo', $tipo);
+            $stmt->bindParam(':carrera', $carrera);
+            $stmt->bindParam(':semestre', $semestre);
+            $stmt->bindParam(':correo', $correo);
+            $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+            $stmt->bindParam(':password', $hashed_password);
+            $stmt->bindParam(':telefono', $telefono);
+            $stmt->bindParam(':direccion', $direccion);
 
-        // Execute the prepared statement
-        if ($stmt->execute()) {
-            $message = 'Se creó el usuario';
+            // Execute the prepared statement
+            if ($stmt->execute()) {
+                $message = 'Se creó el usuario';
+            } else {
+                $message = 'Hubo un error al crear la cuenta';
+            }
         } else {
-            $message = 'Hubo un error al crear la cuenta';
+            $message = 'Las contraseñas no coinciden';
         }
     } else {
         $message = 'Todos los campos son requeridos';
@@ -47,6 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Set the PDO object to null to close the connection
 $conn = null;
 ?>
+
 <div class="container">
     <br>
     <div class="row accecolora" style="padding: 30px;">
