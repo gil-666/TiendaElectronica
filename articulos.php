@@ -26,7 +26,7 @@
             height: auto; /* Maintain aspect ratio */
         }
     </style>
-
+    <br>
     <div class="row row-cols-1 row-cols-md-3 g-4">
         <?php
         // Seleccionar todos los artículos de la tabla 'articulos'
