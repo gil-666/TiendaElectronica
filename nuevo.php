@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $descripcion = $_POST['descripcion'] ?? '';
         $estado = $_POST['estado'] ?? '';
         $precio = $_POST['precio'] ?? '';
-        $vendedorid = "1" ?? '';
+        $vendedorid = $_SESSION['idUsuario'];
 
         // Recuperar la información del archivo de imagen
         $imagen_nombre = $_FILES['fotografia']['name'];
@@ -73,8 +73,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="col-sm">
                 <label for="imagen">Imagen:</label><br>
-                <input type="file" style="padding-left: 120px;" id="fotografia" name="fotografia" accept="image/*" required><br>
-                <label style="padding-top: 80px;" for="precio">Precio ($):</label><br>
+                <input type="file" style="padding-left: 120px;" id="fotografia" name="fotografia" accept="image/*" required onchange="previewImage(event)"><br>
+                <div class="image-preview-container" style="width: 250px; height: 200px; overflow: hidden; margin: 10px auto;">
+                    <img id="preview" src="#" alt="Vista previa de la imagen" style="max-width: 100%; max-height: 100%; display: block; margin: auto;">
+                </div>
+                <label  for="precio">Precio ($):</label><br>
                 <input type="number" id="precio" name="precio" step="1.00" placeholder="Ingresa tu precio aquí" required><br>
             </div>
         </div>
@@ -84,5 +87,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </form>
 </div>
 </div>
+<script>
+    function previewImage(event) {
+        var input = event.target;
+        var preview = document.getElementById('preview');
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
 </body>
 </html>

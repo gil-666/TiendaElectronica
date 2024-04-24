@@ -1,13 +1,17 @@
 <?php
         require 'database.php';
         require 'includes/header.php';
+        if(!isset($_SESSION['idUsuario'])) {
+            header("location: login.php");
+            exit(); // Make sure to exit after redirection
+        }
         ?>
 <main class="container text-center d-flex flex-column alto justify-content-center">
     
 
     <div class="row">
         
-        <?php
+    <?php
         // Seleccionar todos los artículos de la tabla 'articulos'
         $query = $conn->query("SELECT * FROM articulos");
 
