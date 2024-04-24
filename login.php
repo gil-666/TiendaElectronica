@@ -65,7 +65,7 @@
                 <div class="form-group">
                     <label for="correo">Correo electrónico</label>
                     <input type="email" class="form-control" name="correo" id="correo" aria-describedby="emailHelp" placeholder="Ingresa tu Email">
-                    <small id="emailHelp" class="form-text text-muted">No compartas esta información con nadie</small>
+                    <!-- <small id="emailHelp" class="form-text text-muted">No compartas esta información con nadie</small> -->
                 </div><br>
                 <div class="form-group">
                     <label for="password">Contraseña</label>
@@ -83,3 +83,6 @@
     
         
     </div>
+    <?php
+include "includes/footer.php";
+?>

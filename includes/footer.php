@@ -3,7 +3,7 @@
 	<footer class="bg-li py-5">
 		<div class="container py-xl-5 py-lg-3">
 			<!-- subscribe -->
-			<div class="subscribe mx-auto">
+			<!-- <div class="subscribe mx-auto">
 				<div class="icon-effect-w3">
 					<span class="fa fa-envelope"></span>
 				</div>
@@ -16,7 +16,7 @@
 						<button class="btn form-control w-50" type="submit">Subscribe</button>
 					</div>
 				</form>
-			</div>
+			</div> -->
 			<!-- //subscribe -->
 		</div>
 	</footer>

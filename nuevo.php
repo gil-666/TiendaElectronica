@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <div class="container ">
         <br>
         <div class="row accecolora text-center " style="padding: 30px;">
-    <h2>Insertar Nuevo Artículo con Imagen</h2>
+    <h2>Insertar nuevo artículo</h2>
     <form action="nuevo.php" method="POST" enctype="multipart/form-data">
         <br><div class="row ">
             
@@ -108,3 +108,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </script>
 </body>
 </html>
+<?php
+include "includes/footer.php";
+?>
