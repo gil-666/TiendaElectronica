@@ -1,6 +1,6 @@
 <?php
 require 'database.php';
-
+require 'includes/header.php';
 // Verificar si se enviaron datos del formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verificar si se seleccionó un archivo de imagen
@@ -55,19 +55,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Insertar Registro</title>
 </head>
 <body>
+<div class="container ">
+        <br>
+        <div class="row accecolora text-center " style="padding: 30px;">
     <h2>Insertar Nuevo Artículo con Imagen</h2>
     <form action="nuevo.php" method="POST" enctype="multipart/form-data">
-        <label for="nombre">Nombre:</label><br>
-        <input type="text" id="nombre" name="nombre" required><br>
-        <label for="descripcion">Descripción:</label><br>
-        <textarea id="descripcion" name="descripcion" required></textarea><br>
-        <label for="estado">Estado:</label><br>
-        <input type="text" id="estado" name="estado" required><br>
-        <label for="precio">Precio:</label><br>
-        <input type="number" id="precio" name="precio" step="0.01" required><br>
-        <label for="imagen">Imagen:</label><br>
-        <input type="file" id="fotografia" name="fotografia" accept="image/*" required><br>
-        <button type="submit">Insertar Artículo</button>
+        <br><div class="row ">
+            
+            <div class="col-sm">
+                <label for="nombre">Nombre:</label><br>
+                <input type="text" id="nombre" name="nombre" required><br>
+                <label for="descripcion">Descripción:</label><br>
+                <textarea id="descripcion" name="descripcion" required></textarea><br>
+                <label for="estado">Estado:</label><br>
+                <input type="text" id="estado" name="estado" required><br>
+                
+            </div>
+            <div class="col-sm">
+                <label for="imagen">Imagen:</label><br>
+                <input type="file" style="padding-left: 120px;" id="fotografia" name="fotografia" accept="image/*" required><br>
+                <label style="padding-top: 80px;" for="precio">Precio ($):</label><br>
+                <input type="number" id="precio" name="precio" step="1.00" placeholder="Ingresa tu precio aquí" required><br>
+            </div>
+        </div>
+        
+        <br><br>
+        <button type="submit" class="btn btn-primary hover" style="background-color: rgb(114, 75, 124); border-color: blueviolet;">Insertar Artículo</button>
     </form>
+</div>
+</div>
 </body>
 </html>
