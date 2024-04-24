@@ -1,11 +1,13 @@
+<?php
+        require 'database.php';
+        require 'includes/header.php';
+        ?>
 <main class="container text-center d-flex flex-column alto justify-content-center">
     
 
     <div class="row">
+        
         <?php
-        require 'database.php';
-        require 'includes/header.php';
-
         // Seleccionar todos los artículos de la tabla 'articulos'
         $query = $conn->query("SELECT * FROM articulos");
 
@@ -27,7 +29,7 @@
                 }
                 echo '<h2 class="mt-5 fw-bold">' . $row['Nombre'] . '</h2>';
                 echo '<p class="font-monospace mt-3"><strong>Precio: $' . $row['Precio'] . '</strong></p>';
-                echo '<p class="font-monospace mt-3"><strong>Estado: $' . $row['Estado'] . '</strong></p>';
+                echo '<p class="font-monospace mt-3"><strong>Estado: ' . $row['Estado'] . '</strong></p>';
                 echo '<p class="mt-3">' . $row['Descripción'] . '</p>';
                 echo '<a href="#" class="accecolora text-white d-block py-3 text-decoration-none">Acceder</a>';
                 echo '</div>'; // Cerrar custom-card

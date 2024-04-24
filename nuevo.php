@@ -10,6 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $descripcion = $_POST['descripcion'] ?? '';
         $estado = $_POST['estado'] ?? '';
         $precio = $_POST['precio'] ?? '';
+        $vendedorid = "1" ?? '';
 
         // Recuperar la información del archivo de imagen
         $imagen_nombre = $_FILES['fotografia']['name'];
@@ -21,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $imagen_contenido = file_get_contents($imagen_temporal);
 
         // Preparar la consulta SQL para insertar el nuevo registro
-        $query = "INSERT INTO articulos (Nombre, Descripción, Estado, Precio, Fotografia) VALUES (:nombre, :descripcion, :estado, :precio, :fotografia)";
+        $query = "INSERT INTO articulos (Nombre, Descripción, Estado, Precio, Fotografia, usuario_idVendedor) VALUES (:nombre, :descripcion, :estado, :precio, :fotografia, :usuario_idVendedor)";
         $statement = $conn->prepare($query);
 
         // Vincular los parámetros con los valores recibidos del formulario
@@ -30,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $statement->bindParam(':estado', $estado);
         $statement->bindParam(':precio', $precio);
         $statement->bindParam(':fotografia', $imagen_contenido, PDO::PARAM_LOB);
-
+        $statement->bindParam(':usuario_idVendedor', $vendedorid);
         // Ejecutar la consulta SQL
         if ($statement->execute()) {
             // Redirigir a una página de éxito o mostrar un mensaje de éxito

@@ -58,11 +58,9 @@
 								<li><a href="index.php" class="active">Inicio</a></li>
 								<li><a href="articulos.php" class="active">Artículos</a></li>
 								<li><a href="nuevo.php" class="active">Agregar Artículos</a></li>
-								
-									<!-- First Tier Drop Down -->
-									
-								
-								<li><a href="contact.php">Contact Us</a></li>
+								<li><a href="contact.php" class="active">Contact Us</a></li>
+								<span></span>
+								<li><a href="login.php" class="active">Iniciar Sesión</a></li>
 							</ul>
 						</nav>
 					</div>
