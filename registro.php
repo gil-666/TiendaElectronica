@@ -11,7 +11,7 @@ $message = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
     $nombre = $_POST['nombre'];
-    $tipo = $_POST['tipo'];
+    $tipo = "cliente";
     $carrera = $_POST['carrera'];
     $semestre = $_POST['semestre'];
     $correo = $_POST['correo'];
@@ -58,16 +58,16 @@ $conn = null;
     <br>
     <div class="row accecolora" style="padding: 30px;">
         <h1>Registro</h1>
-        <form action="login.php" method="post">
+        <form action="registro.php" method="post">
             <br>
             <div class="form-group">
                 <label for="nombre">Nombre</label>
                 <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ingresa tu Nombre">
             </div><br>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="tipo">Tipo</label>
                 <input type="text" class="form-control" name="tipo" id="tipo" placeholder="Ingresa tu Tipo">
-            </div><br>
+            </div><br> -->
             <div class="form-group">
                 <label for="carrera">Carrera</label>
                 <input type="text" class="form-control" name="carrera" id="carrera" placeholder="Ingresa tu Carrera">
