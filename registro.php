@@ -31,8 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->bindParam(':carrera', $carrera);
             $stmt->bindParam(':semestre', $semestre);
             $stmt->bindParam(':correo', $correo);
-            $hashed_password = password_hash($password, PASSWORD_BCRYPT);
-            $stmt->bindParam(':password', $hashed_password);
+            // $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+            $stmt->bindParam(':password', $password);
             $stmt->bindParam(':telefono', $telefono);
             $stmt->bindParam(':direccion', $direccion);
 
@@ -70,11 +70,18 @@ $conn = null;
             </div><br> -->
             <div class="form-group">
                 <label for="carrera">Carrera</label>
-                <input type="text" class="form-control" name="carrera" id="carrera" placeholder="Ingresa tu Carrera">
+                <select class="form-control" name="carrera" id="carrera" placeholder="Ingresa tu Carrera">
+                    <option value="TURISMO">Turismo</option>
+                    <option value="INTEL">Ingenieria en Teleinformática</option>
+                    <option value="MECATRONICA">Ingenieria en Mecatrónica</option>
+                    <option value="DERECHO">Derecho</option>
+                    <option value="TSUEMA">Mecánica Automotriz</option>
+                    <option value="CONTA">Contaduría Pública</option>
+                </select>
             </div><br>
             <div class="form-group">
                 <label for="semestre">Semestre</label>
-                <input type="text" class="form-control" name="semestre" id="semestre" placeholder="Ingresa tu Semestre">
+                <input type="number" class="form-control" min="1" max="8" name="semestre" id="semestre" placeholder="Ingresa tu Semestre">
             </div><br>
             <div class="form-group">
                 <label for="correo">Correo electrónico</label>
