@@ -1,6 +1,7 @@
 <?php
         require 'database.php';
         require 'includes/header.php';
+        
         // if(!isset($_SESSION['idUsuario'])) {
         //     header("location: login.php");
         //     exit(); // Make sure to exit after redirection
