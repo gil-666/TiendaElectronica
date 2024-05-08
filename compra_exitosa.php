@@ -10,6 +10,8 @@ $query = $conn->prepare("SELECT venta.*, articulos.Nombre AS NombreArticulo, met
 $query->execute([$_SESSION['idUsuario']]);
 $venta = $query->fetch(PDO::FETCH_ASSOC);
 
+$query = $conn->prepare("UPDATE articulos SET Estado = 'Agotado' WHERE idArticulos = ?");
+$query->execute([$venta['Articulos_idArticulos']]);
 if ($venta) {
     // Mostrar los datos de la venta en un contenedor Bootstrap
     ?>

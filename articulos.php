@@ -31,7 +31,7 @@
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
         <?php
         // Seleccionar todos los artículos de la tabla 'articulos'
-        $query = $conn->query("SELECT * FROM articulos");
+        $query = $conn->query("SELECT * FROM articulos WHERE Estado = 'Disponible'");
 
         // Verificar si hay artículos
         if ($query->rowCount() > 0) {
