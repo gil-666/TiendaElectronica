@@ -27,6 +27,7 @@ body {
 background-image: linear-gradient(to top, #a7a6cb 0%, #8989ba 52%, #8989ba 100%);
 
 border-radius: 5px;
+margin-top: 5%;
 
 }
 
@@ -34,19 +35,32 @@ border-radius: 5px;
 background-image: linear-gradient(45deg, #874da2 0%, #c43a30 100%);
 
 border-radius: 5px;
+margin-top: 5%;
 
 }
 
-.custom-card {
-background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
 
-}
-.custom-cardb{
-background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
-}
-.custom-cardc{
-background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%);
-}
+
+.payment-container {
+    margin-top: 50px;
+  }
+  .payment-method {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  .payment-price {
+    background-color: #007bff;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  @media (max-width: 768px) {
+    /* Responsive adjustments */
+    .payment-container {
+      margin-top: 20px;
+    }
+  }
 
 
 
@@ -56,14 +70,7 @@ background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%);
 margin-bottom: 30px;
 /* Margen inferior */
 }
-.accecolora {
-    background-image: linear-gradient(to top, #a7a6cb 0%, #8989ba 52%, #8989ba 100%);
-    border-radius: 5px;
-}
-.accecolorb {
-    background-image: linear-gradient(45deg, #874da2 0%, #c43a30 100%);
-    border-radius: 5px;
-}
+
 .custom-card {
     background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
 }
@@ -175,7 +182,12 @@ header {
     -moz-box-shadow: 0.33333rem 0 1.33333rem rgba(87, 87, 87, .1);
     box-shadow: 0.33333rem 0 1.33333rem rgba(87, 87, 87, .1);
     background: #fff;
+    
 }
+.a {
+    text-decoration: none; /* Elimina el subrayado */
+}
+
 
 .main-top {
     position: relative;
@@ -194,6 +206,7 @@ header {
 nav {
     margin: 0;
     padding: 0;
+    text-decoration: none;
 }
 
 #logo a {
@@ -239,6 +252,8 @@ nav a {
     letter-spacing: .5px;
     margin: 0 14px;
     font-weight: 400;
+    text-decoration: none;
+    
 }
 
 /* Background color change on Hover */
@@ -247,6 +262,7 @@ nav a {
 nav a:hover,
 nav ul ul li a:hover {
     color: #3F72AF;
+    text-decoration: none;
 }
 
 /* Hide Dropdowns by Default
@@ -263,6 +279,7 @@ nav ul ul {
     -moz-border-radius: 4px;
     border-radius: 4px;
     z-index: 9;
+    text-decoration: none;
     /* has to be the same number as the "line-height" of "nav a" */
 }
 
@@ -287,6 +304,7 @@ nav ul ul li {
     -moz-transition: 0.5s all;
     -o-transition: 0.5s all;
     -ms-transition: 0.5s all;
+    text-decoration: none;
 }
 
 nav ul ul li a {
@@ -295,6 +313,7 @@ nav ul ul li a {
     font-size: 15px;
     margin: 0;
     margin: 10px;
+    text-decoration: none;
 }
 
 /* Second, Third and more Tiers	
@@ -306,6 +325,7 @@ nav ul ul ul li {
     top: -60px;
     /* has to be the same number as the "width" of "nav ul ul li" */
     left: 170px;
+    text-decoration: none;
 }
 
 
@@ -334,6 +354,7 @@ li>a:only-child:after {
     .toggle+a,
     .menu {
         display: none;
+        text-decoration: none;
     }
 
     /* Stylinf the toggle lable */

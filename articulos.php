@@ -7,7 +7,7 @@
         //     exit(); // Make sure to exit after redirection
         // }
         ?>
-<main class="container text-center d-flex flex-column alto justify-content-center">
+<main class="container text-center d-flex flex-column alto justify-content-center ">
     <style>
         /* Custom CSS for maintaining card height and adjusting content */
         .custom-card {
@@ -38,7 +38,7 @@
             // Recorrer los resultados y mostrarlos en tarjetas
             while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
                 echo '<article class="col my-3">';
-                echo '<div class="border border-white rounded-3 custom-card">';
+                echo '<div class="border border-white rounded-3 custom-card ">';
                 if (!empty($row['Fotografia'])) {
                     // Convertir el blob de la imagen en una URL de datos base64
                     $imagenBase64 = base64_encode($row['Fotografia']);
@@ -55,7 +55,9 @@
                 echo '<p class="font-monospace mt-2"><strong>Estado: ' . $row['Estado'] . '</strong></p>';
                 echo '<p class="mt-3">' . $row['Descripción'] . '</p>';
                 echo '</div>'; // Cerrar custom-card-content
-                echo '<a href="#" class="accecolora text-white d-block py-3 text-decoration-none">Acceder</a>';
+                echo '<a href="comprar.php?id=' . $row['idArticulos'] . '&precio=' . $row['Precio'] . '" class="accecolora text-white d-block py-3 mt-2 text-decoration-none">Comprar</a>';
+                echo '<br>';
+                echo '<a href="#" class="accecolorb text-white d-block py-3 text-decoration-none">Agregar al carrito</a>';
                 echo '</div>'; // Cerrar custom-card
                 echo '</article>'; // Cerrar col
             }
