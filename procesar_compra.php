@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $idArticulo = $_POST["idArticulo"];
     $idyo = $_SESSION["idUsuario"]; // Asumiendo que ya tienes la sesión iniciada
     $idvendedor = ""; // No se está utilizando actualmente, puedes eliminar esta línea si no es necesaria
-    $metodoPago_idPago = 1; // Método de pago por defecto
+    $metodoPago_idPago = $_POST['metodoPago']; // Método de pago por defecto
 
     // Obtener la fecha actual
     $fecha = date("Y-m-d H:i:s");
