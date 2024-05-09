@@ -4,9 +4,11 @@ require 'includes/header.php';
 if(!isset($_SESSION['idUsuario'])) {
         echo '<div class="text-center alert alert-danger" role="alert">
         Debes iniciar sesión para hacer eso!<br>
-        <a href="logiin.php">Regresar a inicio</a>
-        <a href="index.php">Regresar a inicio</a>
-      </div>';
+        <a href="login.php">Iniciar sesion</a><br>
+        
+      </div>
+      <br>
+      <div class="text-center"><a class="btn btn-primary hover" href="index.php">Regresar a inicio</a></div>';
         
         exit(); // Make sure to exit after redirection
     }

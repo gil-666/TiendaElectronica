@@ -56,7 +56,7 @@
                 echo '<p class="mt-3">' . $row['Descripción'] . '</p>';
                 echo '</div>'; // Cerrar custom-card-content
                 echo '<a href="comprar.php?id=' . $row['idArticulos'] . '&precio=' . $row['Precio'] . '" class="accecolora text-white d-block py-3 mt-2 text-decoration-none">Comprar</a>';
-                echo '<br>';
+              
                 echo '<a href="#" class="accecolorb text-white d-block py-3 text-decoration-none">Agregar al carrito</a>';
                 echo '</div>'; // Cerrar custom-card
                 echo '</article>'; // Cerrar col

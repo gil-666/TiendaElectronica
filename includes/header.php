@@ -65,8 +65,10 @@ session_start();
 							<label for="drop" class="toggle">Menu</label>
 							<input type="checkbox" id="drop" />
 							<ul class="menu">
-								
+							<?php if(!isset($_SESSION['idUsuario'])): ?>
 								<li><a href="index.php" class="active">Inicio</a></li>
+								<?php else: ?>
+								<?php endif; ?>
 								<li><a href="articulos.php" class="active">Artículos</a></li>
 								<?php if(isset($_SESSION['idUsuario'])): ?>
 									<li><a href="nuevo.php" class="active">Agregar Artículos</a></li>
