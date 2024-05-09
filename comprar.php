@@ -44,14 +44,14 @@ if (isset($_GET['id'])) {
                 ?>
 <br>
 
-                <body>
-                        <div class="container">
-                                <div class="row">
-                                        <div class="col-md-6">
-                                                <div class="card">
-                                                        <div class="card-body">
-                                                                <!-- Mueve la imagen aquí -->
-                                                                <?php
+<body>
+        <div class="container">
+                <div class="row">
+                        <div class="col-md-6">
+                                <div class="card">
+                                        <div class="card-body">
+                                                <!-- Mueve la imagen aquí -->
+                                                <?php
                                                                 if (!empty($producto['Fotografia'])) {
                                                                         // Convertir el blob de la imagen en una URL de datos base64
                                                                         $imagenBase64 = base64_encode($producto['Fotografia']);
@@ -62,52 +62,64 @@ if (isset($_GET['id'])) {
                                                                         echo '<p class="text-center">No hay imagen disponible</p>';
                                                                 }
                                                                 ?>
-                                                                <!-- Fin de la imagen -->
+                                                <!-- Fin de la imagen -->
 
-                                                                <!-- Detalles del producto -->
-                                                                <h5 class="card-title"><?php echo $producto['Nombre']; ?></h5>
-                                                                <p class="card-text"><?php echo $producto['Descripción']; ?></p>
-                                                                <p class="card-text"><strong>Precio:
-                                                                                $<?php echo $producto['Precio']; ?></strong></p>
-                                                                <p class="card-text"><strong>Vendido por: </strong><?php echo $nombrevendedor['Nombre']; ?></p>
+                                                <!-- Detalles del producto -->
+                                                <h5 class="card-title">
+                                                        <?php echo $producto['Nombre']; ?>
+                                                </h5>
+                                                <p class="card-text">
+                                                        <?php echo $producto['Descripción']; ?>
+                                                </p>
+                                                <p class="card-text"><strong>Precio:
+                                                                $<?php echo $producto['Precio']; ?>
+                                                        </strong></p>
+                                                <p class="card-text"><strong>Vendido por: </strong>
+                                                        <?php echo $nombrevendedor['Nombre']; ?>
+                                                </p>
 
-                                                        </div>
-                                                </div>
-                                        </div>
-
-
-                                        <div class="col-md-6">
-                                                <div class="card">
-                                                        <div class="card-body">
-                                                                <h5 class="card-title">Seleccione el método de pago</h5>
-                                                                <form action="procesar_compra.php" method="post">
-                                                                        <input type="hidden" name="idArticulo"
-                                                                                value="<?php echo $idArticulo; ?>">
-                                                                        <input type="hidden" name="precio"
-                                                                                value="<?php echo $producto['Precio']; ?>">
-                                                                        <div class="form-group">
-                                                                                <select name="metodoPago" id="metodoPago"
-                                                                                        class="form-control">
-                                                                                        <option value="paypal">PayPal</option>
-                                                                                        <option value="creditCard">Tarjeta de crédito
-                                                                                        </option>
-                                                                                        <!-- Agrega más opciones de pago si es necesario -->
-                                                                                </select>
-                                                                        </div>
-                                                                        <button type="submit" class="btn btn-primary btn-block">Realizar
-                                                                                Compra</button>
-                                                                </form>
-                                                        </div>
-                                                </div>
                                         </div>
                                 </div>
                         </div>
-                        <!-- Agrega aquí tus enlaces a JavaScript si es necesario -->
-                        <script src="tu_script.js"></script>
-                </body>
+                                                                    
+                        <?php $query = $conn->prepare("SELECT * FROM metodopago WHERE Usuario_idUsuario = ?"); 
+                                                                $query->execute([$idyo]);
+                                                                ?>
+                        <div class="col-md-6">
+                                <div class="card">
+                                        <div class="card-body">
+                                                <h5 class="card-title">Seleccione el método de pago</h5>
+                                                <form action="procesar_compra.php" method="post">
+                                                        <input type="hidden" name="idArticulo"
+                                                                value="<?php echo $idArticulo; ?>">
+                                                        <input type="hidden" name="precio"
+                                                                value="<?php echo $producto['Precio']; ?>">
+                                                        <?php 
+                if ($query->rowCount() > 0) {
+                    
+                ?>
+                                                        <div class="form-group">
+                                                                <select name="metodoPago" id="metodoPago"
+                                                                        class="form-control">
+                                                                        <?php while ($row = $query->fetch(PDO::FETCH_ASSOC)) { 
+                                                                        echo '<option value="', $row['idMetodoPago'], '">', $row['tipo'], ' - ', $row['numTarjeta'], '</option>'; }?>
+                                                                </select>
+                                                        </div><br>
+                                                        <?php } ?>
+                                                        <button type="submit" class="btn btn-primary btn-block">Realizar
+                                                                Compra</button>
+                                                </form>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+        </div>
+        <!-- Agrega aquí tus enlaces a JavaScript si es necesario -->
+        <script src="tu_script.js"></script>
+</body>
 
-                </html>
-                <?php
+</html>
+<?php
         } else {
                 // Si no se encontró el producto, mostrar un mensaje de error
                 echo "<p>El producto no existe.</p>";
