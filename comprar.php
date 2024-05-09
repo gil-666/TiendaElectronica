@@ -1,12 +1,21 @@
 <?php
 require 'database.php';
 require 'includes/header.php';
-
+if(!isset($_SESSION['idUsuario'])) {
+        echo '<div class="text-center alert alert-danger" role="alert">
+        Debes iniciar sesión para hacer eso!<br>
+        <a href="logiin.php">Regresar a inicio</a>
+        <a href="index.php">Regresar a inicio</a>
+      </div>';
+        
+        exit(); // Make sure to exit after redirection
+    }
 if (isset($_GET['id'])) {
         // Recuperar el ID del artículo
         $idArticulo = $_GET['id'];
         $idyo = $_SESSION['idUsuario'];
         $idvendedor = "";
+        $nombrevendedor = "";
         
         // Preparar la consulta SQL para obtener la información del artículo
         $query = $conn->prepare("SELECT * FROM articulos WHERE idArticulos = ?");
@@ -21,6 +30,12 @@ if (isset($_GET['id'])) {
         // Obtener el resultado de la consulta
         $idvendedor = $query->fetch(PDO::FETCH_ASSOC);
 
+        $query = $conn->prepare("SELECT usuario.Nombre FROM usuario JOIN articulos ON articulos.usuario_idVendedor = idUsuario WHERE articulos.idArticulos = ?");
+        // Ejecutar la consulta con el ID del artículo
+        $query->execute([$idArticulo]);
+        // Obtener el resultado de la consulta
+        $nombrevendedor = $query->fetch(PDO::FETCH_ASSOC);
+
         // Verificar si se encontró el producto
         if ($producto) {
                 // Mostrar la información del producto en la página
@@ -29,8 +44,6 @@ if (isset($_GET['id'])) {
 
                 <body>
                         <div class="container">
-
-
                                 <div class="row">
                                         <div class="col-md-6">
                                                 <div class="card">
@@ -54,6 +67,8 @@ if (isset($_GET['id'])) {
                                                                 <p class="card-text"><?php echo $producto['Descripción']; ?></p>
                                                                 <p class="card-text"><strong>Precio:
                                                                                 $<?php echo $producto['Precio']; ?></strong></p>
+                                                                <p class="card-text"><strong>Vendido por: </strong><?php echo $nombrevendedor['Nombre']; ?></p>
+
                                                         </div>
                                                 </div>
                                         </div>
