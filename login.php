@@ -10,6 +10,10 @@
         header("location: index.php");
         exit(); // Make sure to exit after redirection
     }
+    if (isset($_SESSION['message'])) {
+        echo '<div class="text-center alert alert-success" role="alert">' . $_SESSION['message'] . '</div>';
+        unset($_SESSION['message']); // limpia la variable para que no vuelva a aparecer
+    }
     
     if($_SERVER["REQUEST_METHOD"] == "POST") {
         $correo = $_POST['correo'];
@@ -50,14 +54,17 @@
             header("location: articulos.php");
             
         } else {
-            echo "Login incorrecto!";
+            echo '<div class="text-center alert alert-danger" role="alert">
+                Correo o contraseña incorrecta!
+                </div>';
+             
+            
         }
     }
 ?>
 
 <html>
     <div class="container ">
-        <br>
         <div class="row accecolora" style="padding: 30px;">
             <h1>Iniciar sesión</h1>
             <form action="login.php" method="post">

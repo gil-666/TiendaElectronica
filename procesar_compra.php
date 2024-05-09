@@ -21,8 +21,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $query = $conn->prepare("INSERT INTO venta (Fecha, monto, status, Usuario_idUsuario, Articulos_idArticulos, metodoPago_idPago) VALUES (?, ?, 'Pendiente', ?, ?, ?)");
     $query->execute([$fecha, $precio, $idyo, $idArticulo, $metodoPago_idPago]);
 
+
     // Redireccionar o mostrar un mensaje de éxito
-    // Por ejemplo, redireccionar a una página de confirmación
     header("Location: compra_exitosa.php");
     exit(); // Finalizar el script para prevenir ejecución adicional
 } else {

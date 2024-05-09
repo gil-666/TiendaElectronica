@@ -11,8 +11,18 @@ $query = $conn->prepare("SELECT venta.*,  articulos.Nombre AS NombreArticulo, me
 $query->execute([$_SESSION['idUsuario']]);
 $venta = $query->fetch(PDO::FETCH_ASSOC);
 
-$query = $conn->prepare("UPDATE articulos SET Estado = 'Agotado' WHERE idArticulos = ?");
+$query = $conn->prepare("SELECT Stock FROM articulos WHERE idArticulos = ?");
 $query->execute([$venta['Articulos_idArticulos']]);
+$stockarticulo = $query->fetch(PDO::FETCH_ASSOC);
+
+if($stockarticulo['Stock'] <=1){//si solo hay 1 unidad del articulo, se marca como agotado
+    $query = $conn->prepare("UPDATE articulos SET Estado = 'Agotado' WHERE idArticulos = ?");
+$query->execute([$venta['Articulos_idArticulos']]);
+}elseif($stockarticulo['Stock'] >1){//si hay mas de 1 unidad del articulo, se resta del Stock disponible
+    $query = $conn->prepare("UPDATE articulos SET Stock = Stock - 1 WHERE idArticulos = ?");
+    $query->execute([$venta['Articulos_idArticulos']]);
+}
+
 
 $query = $conn->prepare("SELECT usuario.Nombre FROM usuario JOIN articulos ON articulos.usuario_idVendedor = idUsuario WHERE articulos.idArticulos = ?");
         // Ejecutar la consulta con el ID del artículo

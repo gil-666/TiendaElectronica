@@ -53,7 +53,15 @@
                 echo '<h2 class="mt-3 fw-bold">' . $row['Nombre'] . '</h2>';
                 echo '<p class="font-monospace mt-2"><strong>Precio: $' . $row['Precio'] . '</strong></p>';
                 echo '<p class="font-monospace mt-2"><strong>Estado: ' . $row['Estado'] . '</strong></p>';
-                echo '<p class="mt-3">' . $row['Descripción'] . '</p>';
+                if($row['Stock'] > 1){
+                    echo '<p class="mt-3">' . $row['Descripción'] . '</p>';
+                    echo '<p class="font-monospace mt-2"><strong>Stock: '.$row['Stock'].'</strong></p>';
+                }elseif($row['Stock'] <= 1){
+                    echo '<p class="mt-3">' . $row['Descripción'] . '</p>';
+                    echo '<p class="font-monospace text-danger mt-2"><strong>Ultimo disponible!</strong></p>';
+                }
+                
+                
                 echo '</div>'; // Cerrar custom-card-content
                 echo '<a href="comprar.php?id=' . $row['idArticulos'] . '&precio=' . $row['Precio'] . '" class="accecolora text-white d-block py-3 mt-2 text-decoration-none">Comprar</a>';
               

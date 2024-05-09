@@ -7,9 +7,9 @@ if(!isset($_SESSION['idUsuario'])) {
         <a href="login.php">Iniciar sesion</a><br>
         
       </div>
-      <br>
-      <div class="text-center"><a class="btn btn-primary hover" href="index.php">Regresar a inicio</a></div>';
-        
+      <footer>
+      <div class="text-center"><a class="btn btn-primary hover" href="index.php">Regresar a inicio</a></div>
+        </footer>';
         exit(); // Make sure to exit after redirection
     }
 if (isset($_GET['id'])) {
@@ -95,19 +95,26 @@ if (isset($_GET['id'])) {
                                                         <input type="hidden" name="precio"
                                                                 value="<?php echo $producto['Precio']; ?>">
                                                         <?php 
-                if ($query->rowCount() > 0) {
+
                     
                 ?>
-                                                        <div class="form-group">
-                                                                <select name="metodoPago" id="metodoPago"
-                                                                        class="form-control">
-                                                                        <?php while ($row = $query->fetch(PDO::FETCH_ASSOC)) { 
-                                                                        echo '<option value="', $row['idMetodoPago'], '">', $row['tipo'], ' - ', $row['numTarjeta'], '</option>'; }?>
-                                                                </select>
-                                                        </div><br>
-                                                        <?php } ?>
+                                                        <?php if ($query->rowCount() > 0) { ?>
+    <div class="form-group">
+        <select name="metodoPago" id="metodoPago" class="form-control">
+            <?php while ($row = $query->fetch(PDO::FETCH_ASSOC)) { 
+                echo '<option value="', $row['idMetodoPago'], '">', $row['tipo'], ' - ', $row['numTarjeta'], '</option>'; 
+            }?>
+        </select>
+    </div><br>
+<?php } else { ?>
+        <div class="text-center alert alert-danger" role="alert">
+    <p class="font-monospace text-danger mt-2">No tienes métodos de pago! Agrega uno.</p></div>
+<?php } ?>
+
+                                                        <?php if ($query->rowCount() > 0) { ?>
                                                         <button type="submit" class="btn btn-primary btn-block">Realizar
                                                                 Compra</button>
+                                                                <?php } ?>
                                                 </form>
                                         </div>
                                 </div>

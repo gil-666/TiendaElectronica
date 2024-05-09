@@ -38,15 +38,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Execute the prepared statement
             if ($stmt->execute()) {
-                $message = 'Se creó el usuario';
+                header("location: login.php");
+                $_SESSION['message'] = 'Se creó el usuario!';
+                exit();
             } else {
-                $message = 'Hubo un error al crear la cuenta';
+                $message = 'Hubo un error al crear la cuenta!';
+                echo '<div class="text-center alert alert-danger" role="alert">
+                        '.$message.'
+                        </div>';
             }
         } else {
-            $message = 'Las contraseñas no coinciden';
+            $message = 'Las contraseñas no coinciden!';
+            echo '<div class="text-center alert alert-danger" role="alert">
+                        '.$message.'
+                        </div>';
         }
     } else {
-        $message = 'Todos los campos son requeridos';
+        $message = 'Todos los campos son requeridos!';
+        echo '<div class="text-center alert alert-danger" role="alert">
+                        '.$message.'
+                        </div>';
     }
 }
 
