@@ -97,8 +97,8 @@ session_start();
 					<div class="d-flex mt-lg-1 mt-sm-2 mt-3 justify-content-center">
 						<!-- search -->
 						<div class="search-w3layouts mr-3">
-							<form action="#" method="post" class="search-bottom-wthree d-flex">
-								<input class="search" type="search" placeholder="Buscar Artículos..." required="">
+							<form action="articulos.php" method="get" class="search-bottom-wthree d-flex">
+								<input class="search" type="search" name="query" placeholder="Buscar Artículos..." required="">
 								<button class="form-control btn" type="submit"><span class="fa fa-search"></span></button>
 							</form>
 						</div>

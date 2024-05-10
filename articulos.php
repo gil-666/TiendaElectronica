@@ -30,8 +30,20 @@
     <br>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
         <?php
-        // Seleccionar todos los artículos de la tabla 'articulos'
-        $query = $conn->query("SELECT * FROM articulos WHERE Estado = 'Disponible'");
+
+        if (isset($_GET['query']) && !empty($_GET['query'])) { //si ocurrio una busqueda
+
+            $search_query = '%' . htmlspecialchars($_GET['query']) . '%';
+        
+            $query = $conn->prepare("SELECT * FROM articulos WHERE Estado = 'Disponible' AND Nombre LIKE ?");
+            $query->execute([$search_query]);
+        
+        } else { //si no hay busqueda, normal
+
+            $query = $conn->query("SELECT * FROM articulos WHERE Estado = 'Disponible'");
+
+        }
+        
 
         // Verificar si hay artículos
         if ($query->rowCount() > 0) {
@@ -58,7 +70,7 @@
                     echo '<p class="font-monospace mt-2"><strong>Stock: '.$row['Stock'].'</strong></p>';
                 }elseif($row['Stock'] <= 1){
                     echo '<p class="mt-3">' . $row['Descripción'] . '</p>';
-                    echo '<p class="font-monospace text-danger mt-2"><strong>Ultimo disponible!</strong></p>';
+                    echo '<p class="font-monospace text-danger mt-2"><strong>Unico disponible!</strong></p>';
                 }
                 
                 
