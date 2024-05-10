@@ -8,6 +8,11 @@ if (isset($_SESSION['message'])) {
     echo '<div class="text-center alert alert-success" role="alert">' . $_SESSION['message'] . '</div>';
     unset($_SESSION['message']); // limpia la variable para que no vuelva a aparecer
 }
+        $querycompras = $conn->prepare("SELECT * FROM articulos JOIN venta ON articulos.idArticulos = venta.Articulos_idArticulos WHERE venta.Usuario_idUsuario = ?");
+        // Ejecutar la consulta con el ID del artículo
+        $querycompras->execute([$idyo]);
+        // Obtener el resultado de la consulta
+        
 
                                                                
 ?>
@@ -50,8 +55,8 @@ if (isset($_SESSION['message'])) {
         </div>
         
     </div>
-    <br>
-    <div class="accecolora m-2 align-items-center">
+    
+    <div class="accecolora m-2 align-items-center"><!-- metodos de pago -->
         <br>
         <div class="text-center justify-content-md-center">
             <div class="col-sm"></div>
@@ -84,6 +89,47 @@ if (isset($_SESSION['message'])) {
         ?>
         </div>
     </div>
+    <div class="row accecolora m-2 align-items-center">
+        <br>
+        <div class="col-sm text-center">
+            <br>
+            <h2>Mis compras</h2><br>
+            <div class="row m-5 ">
+            <?php
+            while ($compras = $querycompras->fetch(PDO::FETCH_ASSOC)){
+                echo '<div class="card col-sm m-3 align-items-center">';
+                if (!empty($compras['Fotografia'])) {
+                    // Convertir el blob de la imagen en una URL de datos base64
+                    $imagenBase64 = base64_encode($compras['Fotografia']);
+                    $imagenDataURL = 'data:image/png;base64,' . $imagenBase64;
+                    // Mostrar la imagen en la tarjeta
+                    echo '<img src="' . $imagenDataURL . '" alt="Imagen del artículo" style="width: 75px; height: 75px; float: left; margin-right: 15px; margin-top: 5px; ">';
+            } else {
+                    echo '<p class="text-center">No hay imagen disponible</p>';
+            }
+            //encontrar el nombre del vendedor de cada articulo
+            $querynomvendedor = $conn->prepare("SELECT usuario.Nombre FROM usuario JOIN articulos ON articulos.usuario_idVendedor = idUsuario WHERE articulos.idArticulos = ?");
+            // Ejecutar la consulta con el ID del artículo
+            $querynomvendedor->execute([$compras['idArticulos']]);
+            $nomvendedor = $querynomvendedor->fetch(PDO::FETCH_ASSOC);
+                echo '<h5 class="card-title">
+                        '.$compras['Nombre'].'
+                </h5>
+                <p class="card-text">
+                        '.$compras['Descripción'].'
+                </p>
+                <p class="card-text"><strong>Precio:
+                                '.$compras['Precio'].'
+                        </strong></p>
+                <p class="card-text"><strong>Vendido por: </strong>
+                        '.$nomvendedor['Nombre'].'
+                </p>
+            </div>';
+            } ?>
+            
+        </div>
+    </div>
+    <br>
 </div>
 <?php
 include "includes/footer.php";
