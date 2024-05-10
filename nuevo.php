@@ -12,7 +12,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Recuperar los datos del formulario
         $nombre = $_POST['nombre'] ?? '';
         $descripcion = $_POST['descripcion'] ?? '';
-        $estado = $_POST['estado'] ?? '';
+        $estado = 'Disponible';
+        $stock = $_POST['stock'] ?? '';
         $precio = $_POST['precio'] ?? '';
         $vendedorid = $_SESSION['idUsuario'];
 
@@ -32,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Vincular los parámetros con los valores recibidos del formulario
         $statement->bindParam(':nombre', $nombre);
         $statement->bindParam(':descripcion', $descripcion);
-        $statement->bindParam(':estado', 'Disponible');
+        $statement->bindParam(':estado', $estado);
         $statement->bindParam(':precio', $precio);
         $statement->bindParam(':stock', $stock);
         $statement->bindParam(':fotografia', $imagen_contenido, PDO::PARAM_LOB);
@@ -73,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="descripcion">Descripción:</label><br>
                 <textarea id="descripcion" name="descripcion" required></textarea><br>
                 <label for="stock">Stock:</label><br>
-                <input type="number" min="1" max="999" id="estado" name="estado" required><br>
+                <input type="number" min="1" max="999" id="stock" name="stock" required><br>
                 <span><p class="text-form text-muted">Para publicar solo 1 artículo,<br> deja el campo vacío o escribe <strong>1</strong></p></span>
                 <br>
             </div>
