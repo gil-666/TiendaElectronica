@@ -51,7 +51,7 @@ if (isset($_SESSION['message'])) {
         
     </div>
     <br>
-    <div class="accecolora align-items-center">
+    <div class="accecolora m-2 align-items-center">
         <br>
         <div class="text-center justify-content-md-center">
             <div class="col-sm"></div>

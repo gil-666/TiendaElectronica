@@ -26,14 +26,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $imagen_contenido = file_get_contents($imagen_temporal);
 
         // Preparar la consulta SQL para insertar el nuevo registro
-        $query = "INSERT INTO articulos (Nombre, Descripción, Estado, Precio, Fotografia, usuario_idVendedor) VALUES (:nombre, :descripcion, :estado, :precio, :fotografia, :usuario_idVendedor)";
+        $query = "INSERT INTO articulos (Nombre, Descripción, Estado, Precio, Stock, Fotografia, usuario_idVendedor) VALUES (:nombre, :descripcion, :estado, :precio, :stock, :fotografia, :usuario_idVendedor)";
         $statement = $conn->prepare($query);
 
         // Vincular los parámetros con los valores recibidos del formulario
         $statement->bindParam(':nombre', $nombre);
         $statement->bindParam(':descripcion', $descripcion);
-        $statement->bindParam(':estado', $estado);
+        $statement->bindParam(':estado', 'Disponible');
         $statement->bindParam(':precio', $precio);
+        $statement->bindParam(':stock', $stock);
         $statement->bindParam(':fotografia', $imagen_contenido, PDO::PARAM_LOB);
         $statement->bindParam(':usuario_idVendedor', $vendedorid);
         // Ejecutar la consulta SQL
@@ -56,13 +57,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Insertar Registro</title>
+    <title>Vender Artículo</title>
 </head>
 <body>
 <div class="container ">
         <br>
         <div class="row accecolora text-center " style="padding: 30px;">
-    <h2>Insertar nuevo artículo</h2>
+    <h2>Publicar nuevo artículo</h2>
     <form action="nuevo.php" method="POST" enctype="multipart/form-data">
         <br><div class="row ">
             
@@ -71,9 +72,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="text" id="nombre" name="nombre" required><br>
                 <label for="descripcion">Descripción:</label><br>
                 <textarea id="descripcion" name="descripcion" required></textarea><br>
-                <label for="estado">Estado:</label><br>
-                <input type="text" id="estado" name="estado" required><br>
-                
+                <label for="stock">Stock:</label><br>
+                <input type="number" min="1" max="999" id="estado" name="estado" required><br>
+                <span><p class="text-form text-muted">Para publicar solo 1 artículo,<br> deja el campo vacío o escribe <strong>1</strong></p></span>
+                <br>
             </div>
             <div class="col-sm">
                 <label for="imagen">Imagen:</label><br>
