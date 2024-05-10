@@ -46,18 +46,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo '<div class="text-center alert alert-danger" role="alert">
                         '.$message.'
                         </div>';
+                        exit();
             }
         } else {
             $message = 'Las contraseñas no coinciden!';
             echo '<div class="text-center alert alert-danger" role="alert">
                         '.$message.'
                         </div>';
+                        exit();
         }
     } else {
         $message = 'Todos los campos son requeridos!';
         echo '<div class="text-center alert alert-danger" role="alert">
                         '.$message.'
                         </div>';
+                        exit();
     }
 }
 

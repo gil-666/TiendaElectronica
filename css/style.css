@@ -285,8 +285,10 @@ nav ul ul {
 
 /* Display Dropdowns on Hover */
 nav ul li:hover>ul {
-    display: inherit;
+    z-index: 99;
+    display: block;
 }
+
 
 /* Fisrt Tier Dropdown */
 nav ul ul li {
@@ -1449,6 +1451,24 @@ button.btn-cont-w3 {
 
     .price-info.price-mkres {
         margin-top: 6em;
+    }
+    .menu li.active > ul {
+        display: block; /* Show dropdown when parent is active */
+        
+    }
+    /* Modify CSS for mobile view */
+    nav ul ul {
+        position: static; /* Remove absolute positioning */
+        display: block; /* Show dropdowns by default */
+        width: auto; /* Set width to auto */
+        text-align: center; /* Adjust text alignment */
+        background: none;
+        
+    }
+    
+
+    nav ul ul li {
+        display: block; /* Show dropdown items as block */
     }
 }
 

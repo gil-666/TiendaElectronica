@@ -31,6 +31,7 @@ session_start();
 	<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
 	<!-- Style-CSS -->
 	<link href="css/font-awesome.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 	<!-- Font-Awesome-Icons-CSS -->
 	<!-- //Custom-Files -->
 
@@ -78,15 +79,13 @@ session_start();
 								<li><a href="contact.php" class="active">Contact Us</a></li>
 
 								<?php if(isset($_SESSION['idUsuario'])): ?>
-									<li class="dropdown">
-										<a href="#" class="active">Cuenta</a>
-										<ul class="dropdown-content">
-											<li><a href="cuenta.php">Ver Cuenta</a></li>
-											<li><a href="cambiar_contrasena.php">Cambiar Contraseña</a></li>
-										</ul>
+									<li>
+										<a href="cuenta.php" class="active">Mi Cuenta</a>
+										
 									</li>
 									<li class="separator"></li>
 									<li><a href="cerrar_sesion.php" class="active" style="color: red;">Cerrar Sesión</a></li>
+									
 								<?php else: ?>
 									<li><a href="login.php" class="active">Iniciar Sesión</a></li>
 								<?php endif; ?>

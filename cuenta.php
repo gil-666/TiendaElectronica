@@ -4,6 +4,10 @@ include "includes/header.php";
 $idyo = $_SESSION['idUsuario'];
 $query = $conn->prepare("SELECT * FROM metodopago WHERE Usuario_idUsuario = ?"); 
 $query->execute([$idyo]);
+if (isset($_SESSION['message'])) {
+    echo '<div class="text-center alert alert-success" role="alert">' . $_SESSION['message'] . '</div>';
+    unset($_SESSION['message']); // limpia la variable para que no vuelva a aparecer
+}
 
                                                                
 ?>
@@ -11,6 +15,7 @@ $query->execute([$idyo]);
     
     <div class="row accecolora align-items-center">
         <div style="margin:10px;" class="row">
+            
             <div class="col-sm text-center">
                     <img src="images/user.png" alt="" width="100px" height="100px"> 
                     <h2>
@@ -48,8 +53,14 @@ $query->execute([$idyo]);
     <br>
     <div class="accecolora align-items-center">
         <br>
-        <div class="row my-3 text-center">
-        <h2>Metodos de pago</h2><br>
+        <div class="text-center justify-content-md-center">
+            <div class="col-sm"></div>
+            <div class="col-sm">
+            <h2>Metodos de pago</h2><br>
+            </div>
+
+        <a class="btn btn-primary hover"href="agregar_pago.php">Agregar metodo de pago</a>
+        
         </div>
         <div class="row p-3 justify-content-md-center">
         <?php if ($query->rowCount() > 0) {
