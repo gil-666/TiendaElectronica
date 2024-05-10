@@ -76,7 +76,7 @@ session_start();
 								<?php else: ?>
 								<?php endif; ?>
 								
-								<li><a href="contact.php" class="active">Contact Us</a></li>
+								<!-- <li><a href="contact.php" class="active">Contact Us</a></li> -->
 
 								<?php if(isset($_SESSION['idUsuario'])): ?>
 									<li>

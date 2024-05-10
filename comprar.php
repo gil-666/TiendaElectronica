@@ -108,7 +108,7 @@ if (isset($_GET['id'])) {
     </div><br>
 <?php } else { ?>
         <div class="text-center alert alert-danger" role="alert">
-    <p class="font-monospace text-danger mt-2">No tienes métodos de pago! Agrega uno.</p></div>
+    <p class="font-monospace text-danger mt-2">No tienes métodos de pago! <a href="agregar_pago.php">Agrega uno.</a></p></div>
 <?php } ?>
 
                                                         <?php if ($query->rowCount() > 0) { ?>
