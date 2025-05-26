@@ -1,7 +1,7 @@
 <?php
 $server = 'localhost';
 $username = 'root';
-$password = '';
+$password = '14$2025';
 $database = 'tiendaelectronica';
 
 try {
