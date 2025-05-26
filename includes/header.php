@@ -7,6 +7,7 @@ session_start();
 
 <head>
 	<title>Tienda Electronica</title>
+	<link rel="icon" type="image/x-icon" href="/favicon.ico">
 	<!-- Meta tag Keywords -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8" />
