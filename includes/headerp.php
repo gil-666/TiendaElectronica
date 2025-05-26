@@ -3,6 +3,7 @@
 
 <head>
 	<title>Startup a Corporate Category Bootstrap Responsive Website Template | Home :: W3layouts</title>
+	<link rel="icon" type="image/x-icon" href="/favicon.ico">
 	<!-- Meta tag Keywords -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8" />
